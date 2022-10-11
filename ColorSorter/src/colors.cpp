@@ -20,7 +20,7 @@ int blueColor;
 #define b_max 160
 
 
-void pin_setup()
+void colors::pins_init()
 {
   // Setting the outputs
   pinMode(S0, OUTPUT);
@@ -59,7 +59,7 @@ int mostFrequent(int* arr, int n)
 }
 
 
-int detect_color(int detail = 10)
+int colors::detect_color(int detail = 10)
 {
   /*
   returns:

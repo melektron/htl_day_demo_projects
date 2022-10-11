@@ -1,3 +1,9 @@
+
+
+
+
+#pragma once
+
 #include <Arduino.h>
 
 
@@ -8,6 +14,10 @@
 #define sensorOut 25
 
 
-void pin_setup();
+namespace colors
+{
+    void pins_init();
 
-int detect_color(int detail);
+    int detect_color(int detail);
+}
+
