@@ -17,7 +17,14 @@ matrixdriver<24, 8, 5> matrix;
 #define GREEN   0b0000011111100000
 #define BLUE    0b0000000000011111
 
-
+uint16_t toco16(const CRGB &_col)
+{
+    return (
+        ((_col.r << 8) & (63 << 11)) | 
+        ((_col.g << 3) & (127 << 5)) |
+        (_col.b >> 3)
+    );
+}
 
 #define MSPF 180 // ms per frame
 
@@ -73,7 +80,7 @@ void moving_circle()
 {
     for (int i = 3; i < 21; i++)        //for (int i = 19; i > 3; i--)  -->  other direction 
     {
-        matrix.drawCircle(i, 4, 3, RED);
+        matrix.drawCircle(i, 4, 3, toco16(CHSV(128, 255, 255)));
         matrix.update();
         delay(MSPF);
         matrix.drawCircle(i, 4, 3, 0);
