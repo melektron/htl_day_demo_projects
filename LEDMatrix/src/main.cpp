@@ -197,18 +197,53 @@ void reverse_snake_line()
 
 void triangle()
 {   
-    int x1 = random(0,24);
-    int x2 = random(0,24);
-    int x3 = random(0,24);
-
-    int y1 = random(0,8);
-    int y2 = random(0,8);
-    int y3 = random(0,8);
     for (int i = 0; i < 3; i++)
     {
+        int x1 = random(0,24);
+        int x2 = random(0,24);
+        int x3 = random(0,24);
+
+        int y1 = random(0,8);
+        int y2 = random(0,8);
+        int y3 = random(0,8);
+
         matrix.drawTriangle(x1,y1,x2,y2,x3,y3, random16(-1));
         matrix.update();
         delay(MSPF*10);
+    }
+    
+}
+
+void random_object()
+{   
+    for (int i = 0; i < 3; i++)
+    {
+        int x1 = random(0,24);
+        int x2 = random(0,24);
+        int x3 = random(0,24);
+
+        int y1 = random(0,8);
+        int y2 = random(0,8);
+        int y3 = random(0,8);
+
+        int r1 = random(1,7);
+
+        //put the object you wanna draw here
+        
+        matrix.update();
+        delay(MSPF*10);
+
+        //Examples: 
+        /*
+        matrix.drawTriangle(x1,y1,x2,y2,x3,y3, random16(-1));
+        
+        matrix.drawCircle(x1,y1,r1,random16(-1));
+
+        matrix.drawRect(x1,y1,x2,y2,random16(-1));
+
+        matrix.drawLine(x1,y1,x2,y2,random16(-1));
+        */
+       
     }
     
 }
@@ -229,6 +264,5 @@ void setup()
 
 void loop()
 {
-    triangle();
     
 }
