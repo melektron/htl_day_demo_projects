@@ -55,11 +55,16 @@ void scroll_text(const char *_text, int16_t _x, int16_t _y)
 
 void stationary_circle()
 {
-    matrix.drawCircle(17, 4, 3, RED);
-    matrix.update();
+    for (int i=0; i < 10; i++)
+    {
+        matrix.drawCircle(17, 4, 3, toco16(CHSV(random(0,255), 255, 255)));
+        matrix.update();
+        
+        matrix.drawCircle(6, 4, 3, toco16(CHSV(random(0,255), 255, 255)));
+        matrix.update();
+        delay(MSPF*20);
+    }
     
-    matrix.drawCircle(6, 4, 3, GREEN);
-    matrix.update();
 }
     
 void smiley()
@@ -93,6 +98,26 @@ void creating_sinus()
     for (int i = 0; i < 24; i++)
     {
         matrix.drawPixel(i, round(3 + 2*sin(i)), GREEN);
+        matrix.update();
+        delay(MSPF);
+    }
+}
+
+void reversed_sinus()
+{
+    for (int i = 23; i > -1; i--)
+    {
+        matrix.drawPixel(i+3, round(3 + 2*sin(i)), RED);
+        matrix.update();
+        delay(MSPF);
+    }
+}
+
+void creating_cosinus()
+{
+    for (int i = 0; i < 24; i++)
+    {
+        matrix.drawPixel(i, round(3 + 2*cos(i)), RED);
         matrix.update();
         delay(MSPF);
     }
@@ -161,7 +186,7 @@ void reverse_snake_line()
     }
     matrix.drawPixel(22, y+1, 0);
     matrix.update();
-    delay(MSPF/2);
+    delay(MSPF/3);
     y+=2;
 
     for (int x = 22; x > 1; x--)
@@ -204,7 +229,7 @@ void reverse_snake_line()
 
 void triangle()
 {   
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 100; i++)
     {
         int x1 = random(0,24);
         int x2 = random(0,24);
@@ -216,7 +241,7 @@ void triangle()
 
         matrix.drawTriangle(x1,y1,x2,y2,x3,y3, random16(-1));
         matrix.update();
-        delay(MSPF*10);
+        delay(MSPF/10);
     }
     
 }
@@ -236,7 +261,7 @@ void random_object()
         int r1 = random(1,7);
 
         //put the object you wanna draw here
-        
+        matrix.drawCircle(x1,y1,r1,random16(-1));
         matrix.update();
         delay(MSPF*10);
 
@@ -267,9 +292,36 @@ void setup()
 
 }
 
+void main_loop()
+{
+    scroll_text("HALLO",23,0);
+    scroll_text("Herzlich Willkommen an den HTL Tagen!",23,0);
+    smiley();
+    delay(MSPF*50);
+    blackscreen();
+    stationary_circle();
+    delay(MSPF*10);
+    blackscreen();
+    triangle();
+    delay(MSPF*30);
+    blackscreen();
+    creating_sinus();
+    reversed_sinus();
+    delay(MSPF*20);
+    blackscreen();
+    snake_line();
+    reverse_snake_line();
+    blackscreen();
+    for (int i=0; i < 3; i++)
+    {
+        random_object();
+        blackscreen();
+    }
+    scroll_text("Competence Center  HTL Anichstraße",23,0);
 
+}
 
 void loop()
 {
-    
+    main_loop();
 }
