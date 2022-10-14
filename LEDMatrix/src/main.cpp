@@ -285,7 +285,7 @@ void setup()
     Serial.begin(9600);
     
     matrix.begin();
-    matrix.set_brightness(5);
+    matrix.set_brightness(20);
     matrix.set_mirror(true, false);
     matrix.setTextSize(1);
     matrix.setTextWrap(0);
