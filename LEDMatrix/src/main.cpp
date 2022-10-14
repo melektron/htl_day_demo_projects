@@ -26,7 +26,7 @@ uint16_t toco16(const CRGB &_col)
     );
 }
 
-#define MSPF 180 // ms per frame
+#define MSPF 120 // ms per frame
 
 void blackscreen()
 {
@@ -50,6 +50,27 @@ void scroll_text(const char *_text, int16_t _x, int16_t _y)
         matrix.update(); 
         delay(MSPF);
         matrix.fillScreen(0);
+    }
+}
+
+void scroll_text_multicolor(const char *_text, int16_t _x, int16_t _y)
+{
+    // get text length
+    uint16_t iters;
+    int16_t grb;
+    uint16_t ugrb;
+    matrix.getTextBounds(_text, _x, _y, &grb, &grb, &iters, &ugrb);
+    matrix.setTextColor(toco16(CHSV(0, 255, 255)));
+
+    // scroll text all the way off the screen (text length + screen width (= 24 px))
+    for (uint16_t i = 0; i < iters + 24; i++)
+    {
+        matrix.setCursor(_x - i, _y);
+        matrix.print(_text);
+        matrix.update(); 
+        delay(MSPF);
+        matrix.fillScreen(0);
+        matrix.setTextColor(toco16(CHSV(i*(255/iters), 255, 255)));
     }
 }
 
@@ -323,5 +344,5 @@ void main_loop()
 
 void loop()
 {
-    main_loop();
+    scroll_text_multicolor("HTL Tage - CCA HTL Anichstrasse",23,0);
 }
