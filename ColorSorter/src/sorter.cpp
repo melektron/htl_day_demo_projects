@@ -34,13 +34,13 @@ Servo sortToServo;
 #define pos3 30
 #define pos4 160
 
-#define actual_zero 5
+#define actual_zero 10
 
 void sorter::init()
 {
     // Allow allocation of all timers
     myservo.setPeriodHertz(50);          // standard 50 hz servo
-    myservo.attach(servoPin, 500, 2430); // attaches the servo on pin 18 to the servo object
+    myservo.attach(servoPin, 550, 2430); // attaches the servo on pin 18 to the servo object
     sortToServo.setPeriodHertz(50);
     sortToServo.attach(sortToServoPin, 500, 2400);
     myservo.write(actual_zero);
@@ -68,18 +68,22 @@ void sorter::thread_fn(void *_args)
             continue;
         };
 
-        for (int pos = actual_zero; pos <= 90; pos += 1)
+        delay(1000);
+
+        for (int pos = actual_zero; pos <= 95; pos += 1)
         { // goes from 0 degrees to 180 degrees
             // in steps of 1 degree
             myservo.write(pos); // tell servo to go to position in variable 'pos'
             delay(15);          // waits 15ms for the servo to reach the position
         }
 
-        Serial.println("detecting");
-        delay(100);
+        delay(500);
+
         color = colors::detect_color(10);
-        Serial.print("detected: ");
-        Serial.println(color);
+        //Serial.print("detected: ");
+        //Serial.println(color);
+
+        delay(500);
 
         // move sorting servo
         switch (color)
@@ -114,7 +118,7 @@ void sorter::thread_fn(void *_args)
             delay(15);          // waits 15ms for the servo to reach the position
         }
 
-        for (int pos = 165; pos <= 175; pos += 1)
+        for (int pos = 165; pos <= 180; pos += 1)
         { // goes from 0 degrees to 180 degrees
             // in steps of 1 degree
             myservo.write(pos); // tell servo to go to position in variable 'pos'

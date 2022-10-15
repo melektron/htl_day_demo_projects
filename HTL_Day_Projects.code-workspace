@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "LEDMatrix",
+			"path": "LEDMatrix"
+		},
+		{
+			"name": "ColorSorter",
+			"path": "ColorSorter"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"fstream": "cpp",
+			"cmath": "cpp",
+			"ostream": "cpp",
+			"*.tcc": "cpp"
+		}
+	}
+}

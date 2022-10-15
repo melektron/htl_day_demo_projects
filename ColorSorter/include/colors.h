@@ -7,11 +7,11 @@
 #include <Arduino.h>
 
 
-#define S0 17
-#define S1 18
-#define S2 19
-#define S3 23
-#define sensorOut 25
+#define S0 23
+#define S1 19
+#define S2 18
+#define S3 17
+#define sensorOut 16
 
 
 namespace colors
