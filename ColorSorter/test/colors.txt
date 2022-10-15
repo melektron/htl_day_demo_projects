@@ -1,0 +1,14 @@
+Violett:
+AR=102     IR= 84  AG=107  IG= 90  AB= 61  IB= 50  AC=116  IC= 99
+
+Yellow:
+AR= 47     IR= 40  AG= 71  IG= 60  AB= 25  IB= 21  AC= 56  IC= 48
+
+Green:
+AR= 75     IR= 65  AG= 87  IG= 76  AB= 38  IB= 33  AC= 72  IC= 62
+
+Orange:
+AR= 53     IR= 43  AG= 84  IG= 70  AB= 33  IB= 28  AC= 84  IC= 71
+
+Red:
+AR= 75     IR= 65  AG=106  IG= 89  AB= 53  IB= 44  AC=112  IC= 96
