@@ -344,6 +344,5 @@ void main_loop()
 
 void loop()
 {
-    scroll_text_multicolor("Hallo wie geht es dir?",23,0);
-
+    scroll_text_multicolor("HTL Tage",31,0);
 }
