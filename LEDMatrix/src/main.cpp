@@ -10,7 +10,7 @@ Arduino entry point for led display
 #include <Arduino.h>
 #include "matrixdriver.hpp"
 
-matrixdriver<24, 8, 5> matrix;
+matrixdriver<32, 8, 5> matrix;
 
 //              0brrrrrggggggbbbbb
 #define RED     0b1111100000000000
@@ -43,7 +43,7 @@ void scroll_text(const char *_text, int16_t _x, int16_t _y)
     matrix.setTextColor(BLUE);
 
     // scroll text all the way off the screen (text length + screen width (= 24 px))
-    for (uint16_t i = 0; i < iters + 24; i++)
+    for (uint16_t i = 0; i < iters + 32; i++)
     {
         matrix.setCursor(_x - i, _y);
         matrix.print(_text);
@@ -63,7 +63,7 @@ void scroll_text_multicolor(const char *_text, int16_t _x, int16_t _y)
     matrix.setTextColor(toco16(CHSV(0, 255, 255)));
 
     // scroll text all the way off the screen (text length + screen width (= 24 px))
-    for (uint16_t i = 0; i < iters + 24; i++)
+    for (uint16_t i = 0; i < iters + 32; i++)
     {
         matrix.setCursor(_x - i, _y);
         matrix.print(_text);
@@ -93,10 +93,10 @@ void smiley()
     for (int i = 6; i < 20; i+=11)
     {
         matrix.drawCircle(i, 4, 3, RED);
-        matrix.update();
         matrix.drawPixel(i-1, 3, BLUE);
         matrix.drawPixel(i+1, 3, BLUE);
         matrix.drawLine(i-1, 5, i+1, 5, GREEN);
+        matrix.update();
     }
         
     
@@ -104,7 +104,7 @@ void smiley()
 
 void moving_circle()
 {
-    for (int i = 3; i < 21; i++)        //for (int i = 19; i > 3; i--)  -->  other direction 
+    for (int i = 3; i < 30; i++)        //for (int i = 19; i > 3; i--)  -->  other direction 
     {
         matrix.drawCircle(i, 4, 3, toco16(CHSV(128, 255, 255)));
         matrix.update();
@@ -116,7 +116,7 @@ void moving_circle()
     
 void creating_sinus()
 {
-    for (int i = 0; i < 24; i++)
+    for (int i = 0; i < 32; i++)
     {
         matrix.drawPixel(i, round(3 + 2*sin(i)), GREEN);
         matrix.update();
@@ -126,7 +126,7 @@ void creating_sinus()
 
 void reversed_sinus()
 {
-    for (int i = 23; i > -1; i--)
+    for (int i = 31; i > -1; i--)
     {
         matrix.drawPixel(i+3, round(3 + 2*sin(i)), RED);
         matrix.update();
@@ -136,7 +136,7 @@ void reversed_sinus()
 
 void creating_cosinus()
 {
-    for (int i = 0; i < 24; i++)
+    for (int i = 0; i < 32; i++)
     {
         matrix.drawPixel(i, round(3 + 2*cos(i)), RED);
         matrix.update();
@@ -147,18 +147,18 @@ void creating_cosinus()
 void snake_line()
 {
     int y = 1;
-    for (int x = 0; x < 23; x++)
+    for (int x = 0; x < 31; x++)
     {
         matrix.drawPixel(x, y, GREEN);
         matrix.update();
         delay(MSPF);
     }
-    matrix.drawPixel(22, y+1, GREEN);
+    matrix.drawPixel(30, y+1, GREEN);
     matrix.update();
     delay(MSPF);
     y+=2;
 
-    for (int x = 22; x > 1; x--)
+    for (int x = 30; x > 1; x--)
     {
         matrix.drawPixel(x, y, GREEN);
         matrix.update();
@@ -169,18 +169,18 @@ void snake_line()
     delay(MSPF);
     y+=2;
 
-    for (int x = 2; x < 23; x++)
+    for (int x = 2; x < 31; x++)
     {
         matrix.drawPixel(x, y, GREEN);
         matrix.update();
         delay(MSPF);
     }
-    matrix.drawPixel(22, y+1, GREEN);
+    matrix.drawPixel(30, y+1, GREEN);
     matrix.update();
     delay(MSPF);
     y+=2;
 
-    for (int x = 22; x > -1; x--)
+    for (int x = 30; x > -1; x--)
     {
         matrix.drawPixel(x, y, GREEN);
         matrix.update();
@@ -199,18 +199,18 @@ void snake_line()
 void reverse_snake_line()
 {
     int y = 1;
-    for (int x = 0; x < 23; x++)
+    for (int x = 0; x < 31; x++)
     {
         matrix.drawPixel(x, y, 0);
         matrix.update();
         delay(MSPF/2);
     }
-    matrix.drawPixel(22, y+1, 0);
+    matrix.drawPixel(30, y+1, 0);
     matrix.update();
     delay(MSPF/3);
     y+=2;
 
-    for (int x = 22; x > 1; x--)
+    for (int x = 30; x > 1; x--)
     {
         matrix.drawPixel(x, y, 0);
         matrix.update();
@@ -221,18 +221,18 @@ void reverse_snake_line()
     delay(MSPF/2);
     y+=2;
 
-    for (int x = 2; x < 23; x++)
+    for (int x = 2; x < 31; x++)
     {
         matrix.drawPixel(x, y, 0);
         matrix.update();
         delay(MSPF/2);
     }
-    matrix.drawPixel(22, y+1, 0);
+    matrix.drawPixel(30, y+1, 0);
     matrix.update();
     delay(MSPF/2);
     y+=2;
 
-    for (int x = 22; x > -1; x--)
+    for (int x = 30; x > -1; x--)
     {
         matrix.drawPixel(x, y, 0);
         matrix.update();
@@ -252,9 +252,9 @@ void triangle()
 {   
     for (int i = 0; i < 100; i++)
     {
-        int x1 = random(0,24);
-        int x2 = random(0,24);
-        int x3 = random(0,24);
+        int x1 = random(0,32);
+        int x2 = random(0,32);
+        int x3 = random(0,32);
 
         int y1 = random(0,8);
         int y2 = random(0,8);
@@ -282,7 +282,7 @@ void random_object()
         int r1 = random(1,7);
 
         //put the object you wanna draw here
-        matrix.drawCircle(x1,y1,r1,random16(-1));
+        matrix.drawRect(x1,y1,x2,y2,random16(-1));
         matrix.update();
         delay(MSPF*10);
 
@@ -344,5 +344,6 @@ void main_loop()
 
 void loop()
 {
-    scroll_text_multicolor("HTL Tage - CCA HTL Anichstrasse",23,0);
+    scroll_text_multicolor("Hallo wie geht es dir?",23,0);
+
 }
