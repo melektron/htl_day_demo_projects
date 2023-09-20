@@ -19,7 +19,7 @@ void oled::update_display(double dist_perc, double max_distance)
 
     // shots left
     char buff[64];
-    sprintf(buff, "%f cm", distance);
+    sprintf(buff, "%f.0 cm", distance);
     u8g2.drawStr(30, 30, buff);
 
     u8g2.nextPage();

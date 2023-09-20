@@ -5,7 +5,7 @@ CRGB led_bar::leds[NUM_LEDS];
 
 void led_bar::setup(const CRGB &default_color)
 {
-    FastLED.addLeds<WS2813, DATA_PIN, GBR>(leds, NUM_LEDS);
+    FastLED.addLeds<WS2813, DATA_PIN, GRB>(leds, NUM_LEDS);
 
     // global brightness scaling
     FastLED.setBrightness(75);
@@ -46,4 +46,5 @@ void led_bar::setPercentage(double distPerc, const CRGB &on_color, const CRGB &o
     {
         leds[curr_led_index] = off_color;
     }
+    FastLED.show();
 }

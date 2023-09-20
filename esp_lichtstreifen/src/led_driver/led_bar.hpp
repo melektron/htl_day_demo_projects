@@ -12,7 +12,7 @@
 #include <FastLED.h>
 
 #define DATA_PIN 23
-#define NUM_LEDS 10
+#define NUM_LEDS 50
 
 
 namespace led_bar
