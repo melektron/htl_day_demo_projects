@@ -11,6 +11,7 @@
 
 #include <Arduino.h>
 #include "led_driver/led_bar.hpp"
+#include "oled/oled.hpp"
 
 
 
@@ -18,6 +19,7 @@ void setup()
 {
     Serial.begin(115200);
     led_bar::setup();
+    oled::setup();
 }
 
 
@@ -27,6 +29,7 @@ void loop()
 
     for (int p = 0; p < 101; p++)
     {
+        oled::update_display(p, 100);
         led_bar::setPercentage(p, CRGB::Green, CRGB::Red);
     }
 }
