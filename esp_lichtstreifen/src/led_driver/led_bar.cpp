@@ -1,5 +1,7 @@
 #include "led_bar.hpp"
 
+CRGB led_bar::leds[NUM_LEDS];
+
 
 void led_bar::setup(const CRGB &default_color)
 {
@@ -30,7 +32,7 @@ void led_bar::colorSpan()
 }
 
 
-void led_bar::setPercentage(float distPerc, const CRGB &on_color, const CRGB &off_color)
+void led_bar::setPercentage(double distPerc, const CRGB &on_color, const CRGB &off_color)
 {
     int curr_led_index = 0;
     int stop_led_idnex = int((distPerc / 100) * NUM_LEDS);

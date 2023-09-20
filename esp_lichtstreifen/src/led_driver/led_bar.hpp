@@ -8,15 +8,16 @@
  * @copyright Copyright Nilusink (c) 2023
  * 
  */
+#pragma once
 #include <FastLED.h>
 
-#define DATA_PIN 21
+#define DATA_PIN 23
 #define NUM_LEDS 10
 
 
 namespace led_bar
 {
-    CRGB leds[NUM_LEDS];
+    extern CRGB leds[NUM_LEDS];
 
     /**
      * @brief setup the leds (and sett all to white)
@@ -44,5 +45,5 @@ namespace led_bar
      * @param on_color color of on leds
      * @param off_color color of off leds
      */
-    void setPercentage(float distPerc, const CRGB &on_color, const CRGB &off_color);
+    void setPercentage(double distPerc, const CRGB &on_color, const CRGB &off_color);
 }
