@@ -10,7 +10,12 @@
 		{
 			"name": "ColorSorter",
 			"path": "ColorSorter"
+		},
+		{
+			"name": "esp_lichtstreifen",
+			"path": "esp_lichtstreifen"
 		}
+
 	],
 	"settings": {
 		"files.associations": {
