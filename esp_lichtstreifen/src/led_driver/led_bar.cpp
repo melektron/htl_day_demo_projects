@@ -1,7 +1,7 @@
 #include "led_bar.hpp"
 
 
-void led_bar::setup()
+void led_bar::setup(const CRGB &default_color)
 {
     FastLED.addLeds<WS2813, DATA_PIN, GBR>(leds, NUM_LEDS);
 
@@ -9,7 +9,7 @@ void led_bar::setup()
     FastLED.setBrightness(75);
 
     // set default color
-    setAll(CRGB::White);
+    setAll(default_color);
 }
 
 
@@ -27,4 +27,21 @@ void led_bar::colorSpan()
         leds[i] = CHSV(map(i, 0, NUM_LEDS - 1, 60, 255), 255, 255);
 
     FastLED.show();
+}
+
+
+void led_bar::setPercentage(float distPerc, const CRGB &on_color, const CRGB &off_color)
+{
+    int curr_led_index = 0;
+    int stop_led_idnex = int((distPerc / 100) * NUM_LEDS);
+
+    for (; curr_led_index < stop_led_idnex; curr_led_index++)
+    {
+        leds[curr_led_index] = on_color;
+    }
+
+    for (; curr_led_index < NUM_LEDS; curr_led_index++)
+    {
+        leds[curr_led_index] = off_color;
+    }
 }
