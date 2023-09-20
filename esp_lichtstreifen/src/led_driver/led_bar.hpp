@@ -24,8 +24,25 @@ namespace led_bar
      */
     void setup(const CRGB &default_color = CRGB::Black);
 
+    /**
+     * @brief set the color of all leds
+     * 
+     * @param _color color to set
+     */
     void setAll(const CRGB &_color);
+
+    /**
+     * @brief sweeps all colors
+     * 
+     */
     void colorSpan();
 
+    /**
+     * @brief Set the Percentage object
+     * 
+     * @param distPerc how many to set
+     * @param on_color color of on leds
+     * @param off_color color of off leds
+     */
     void setPercentage(float distPerc, const CRGB &on_color, const CRGB &off_color);
 }
