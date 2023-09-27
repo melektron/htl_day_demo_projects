@@ -10,6 +10,9 @@
  */
 #include <U8g2lib.h>
 
+#define PIN_CLOCK 25
+#define PIN_DATA 26
+
 
 namespace oled
 {

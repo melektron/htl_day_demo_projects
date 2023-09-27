@@ -8,7 +8,6 @@
  * @copyright Copyright Amogus (c) 2023
  * 
  */
-
 #include <Arduino.h>
 #include "led_driver/led_bar.hpp"
 #include "distance_driver/seppl.hpp"
@@ -18,9 +17,8 @@
 
 void setup()
 {
-    Serial.begin(115200);
-    led_bar::setup();
     seppl::setup(100);
+    led_bar::setup();
     oled::setup();
 }
 
@@ -29,12 +27,7 @@ void loop()
 {
     float distPerc = seppl::distance_percentage();
 
-    if (distPerc > 100)
-    {
-        distPerc = 100;
-    }
-
-    Serial.println(distPerc);
+    if (distPerc > 100) {distPerc = 100;}
 
     oled::update_display(distPerc, seppl::max_distance);
     led_bar::setPercentage(distPerc, CRGB::Green, CRGB::Blue);
