@@ -17,8 +17,8 @@
 namespace seppl
 {
     extern double max_distance;
+    extern double last_distance;
 
-    
     void setup(double dist);
     double distance_percentage(); 
 }

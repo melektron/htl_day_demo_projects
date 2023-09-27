@@ -22,7 +22,8 @@
 			"fstream": "cpp",
 			"cmath": "cpp",
 			"ostream": "cpp",
-			"*.tcc": "cpp"
+			"*.tcc": "cpp",
+			"iterator": "cpp"
 		}
 	}
 }

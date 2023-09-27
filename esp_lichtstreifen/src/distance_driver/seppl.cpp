@@ -1,7 +1,8 @@
 #include "seppl.hpp" 
 
 
-double seppl::max_distance = 0;
+double seppl::max_distance;
+double seppl::last_distance = 0;
 
 
 void seppl::setup(double dist)
@@ -19,11 +20,10 @@ double seppl::distance_percentage()
     digitalWrite(TRIGGER, LOW); 
     int duration = pulseIn(ECHO, HIGH, 100000);
 
-    if (duration > 12000)
-        return 0;
+    if (duration > 12000 || duration == 0)
+        return seppl::last_distance;
 
-    double distance = duration * 0.0344 / 2;
-    return (distance / max_distance) * 100; 
-    
-    
+    seppl::last_distance = duration * 0.0344 / 2;
+    seppl::last_distance = (seppl::last_distance / max_distance) * 100;
+    return seppl::last_distance;
 }

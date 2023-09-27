@@ -17,6 +17,7 @@
 
 void setup()
 {
+    Serial.begin(115200);
     seppl::setup(100);
     led_bar::setup();
     oled::setup();
@@ -31,6 +32,8 @@ void loop()
 
     oled::update_display(distPerc, seppl::max_distance);
     led_bar::setPercentage(distPerc, CRGB::Green, CRGB::Blue);
+
+    Serial.println(distPerc);
 
     delay(20);
 }
