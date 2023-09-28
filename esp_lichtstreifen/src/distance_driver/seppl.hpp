@@ -10,8 +10,8 @@
  */
 #include <Arduino.h> 
 
-#define TRIGGER 16
-#define ECHO 17
+#define TRIGGER 17
+#define ECHO 16
 
 
 namespace seppl

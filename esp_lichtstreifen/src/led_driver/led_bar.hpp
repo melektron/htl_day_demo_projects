@@ -10,14 +10,15 @@
  */
 #pragma once
 #include <FastLED.h>
+#include <array>
 
 #define DATA_PIN 23
-#define NUM_LEDS 50
+#define NUM_LEDS 60
 
 
 namespace led_bar
 {
-    extern CRGB leds[NUM_LEDS];
+    extern std::array<CRGB, NUM_LEDS> leds;
 
     /**
      * @brief setup the leds (and sett all to white)
@@ -46,4 +47,52 @@ namespace led_bar
      * @param off_color color of off leds
      */
     void setPercentage(double distPerc, const CRGB &on_color, const CRGB &off_color);
+
+
+    class Animation
+    {
+        protected:
+            double current_animation_progress = 0;
+            double l_offset;
+
+            virtual CRGB animate(double progresss) = 0;
+
+        public:
+            Animation(double led_offset);
+
+            void stepPercent(double delta);
+            virtual void renderToStrip(
+                std::array<CRGB, NUM_LEDS> &strip,
+                uint start_index = 0,
+                int end_index = -1
+            );
+    };
+
+
+    void setPercentageAnimation(double distPerc, Animation &on_color, Animation &off_color);
+
+
+    class FlowAnimation : public Animation
+    {
+        private:
+            virtual CRGB animate(double progress) override;
+
+        public:
+            FlowAnimation(double led_offset);
+    };
+
+    class ConstantAnimation : public Animation
+    {
+        private:
+            CRGB c;
+            virtual CRGB animate(double progress) override;
+
+        public:
+            ConstantAnimation(CRGB color);
+            void renderToStrip(
+                std::array<CRGB, NUM_LEDS> &strip,
+                uint start_index = 0,
+                int end_index = -1
+            );
+    };
 }

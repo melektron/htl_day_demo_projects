@@ -23,7 +23,8 @@
 			"cmath": "cpp",
 			"ostream": "cpp",
 			"*.tcc": "cpp",
-			"iterator": "cpp"
+			"iterator": "cpp",
+			"array": "cpp"
 		}
 	}
 }

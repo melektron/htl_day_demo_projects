@@ -14,6 +14,10 @@
 #include "oled/oled.hpp"
 
 
+led_bar::FlowAnimation anim(2);
+led_bar::ConstantAnimation green(CRGB::Green);
+led_bar::ConstantAnimation red(CRGB::Red);
+
 
 void setup()
 {
@@ -26,14 +30,16 @@ void setup()
 
 void loop()
 {
+    anim.stepPercent(10);
     float distPerc = seppl::distance_percentage();
 
     if (distPerc > 100) {distPerc = 100;}
 
     oled::update_display(distPerc, seppl::max_distance);
-    led_bar::setPercentage(distPerc, CRGB::Green, CRGB::Blue);
+    led_bar::setPercentageAnimation(
+        distPerc, green, red
+        );
 
-    Serial.println(distPerc);
 
-    delay(20);
+    delay(10);
 }

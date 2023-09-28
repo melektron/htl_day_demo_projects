@@ -8,7 +8,7 @@ U8G2_SH1106_128X64_NONAME_F_HW_I2C oled::u8g2(U8G2_R0, U8X8_PIN_NONE, PIN_CLOCK,
 void oled::setup()
 {
     u8g2.begin();
-    u8g2.setFont(u8g2_font_ncenB08_tr);
+    u8g2.setFont(u8g2_font_ncenB12_tr);
 }
 
 void oled::update_display(double dist_perc, double max_distance)

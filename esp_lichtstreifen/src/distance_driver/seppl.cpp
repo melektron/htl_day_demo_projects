@@ -18,9 +18,9 @@ double seppl::distance_percentage()
     digitalWrite(TRIGGER, HIGH); 
     delayMicroseconds(3); 
     digitalWrite(TRIGGER, LOW); 
-    int duration = pulseIn(ECHO, HIGH, 100000);
+    int duration = pulseIn(ECHO, HIGH, 8000);
 
-    if (duration > 12000 || duration == 0)
+    if (duration == 0)
         return seppl::last_distance;
 
     seppl::last_distance = duration * 0.0344 / 2;
