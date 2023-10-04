@@ -73,11 +73,15 @@ void loop()
         {
             // render animation if on
             if (anim_on)
+            {
+                oled::idle_display();
                 anim.renderToStrip(led_bar::leds);
+            }
 
             // turn off leds if not
             else
             {
+                oled::off();
                 FastLED.setBrightness(0);
                 FastLED.show();
             }
