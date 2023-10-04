@@ -21,7 +21,7 @@
 
 // global variables
 int last_updated_time = 0;
-bool anim_on = false;
+bool anim_on = false;  // default on (switches because reasons and stuff)
 bool last_btn_value = false;
 bool dist_updated, curr_btn_value;
 
@@ -60,7 +60,10 @@ void loop()
     last_btn_value = curr_btn_value;
 
     // update leds & display
-    float distPerc = seppl::distance_percentage(dist_updated);
+    float dist_perc = seppl::distance_percentage(dist_updated);
+
+    if (dist_perc > 100)
+        dist_perc = 100;
 
     // no obstacle detected
     if (!dist_updated)
@@ -84,9 +87,9 @@ void loop()
     }
 
     // obstacle detected
-    oled::update_display(distPerc, seppl::max_distance);
+    oled::update_display(dist_perc, seppl::max_distance);
     led_bar::setPercentageAnimation(
-        distPerc, green, red
+        dist_perc, green, red
     );
 
     last_updated_time = millis();

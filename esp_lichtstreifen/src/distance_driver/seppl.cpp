@@ -25,10 +25,11 @@ double seppl::distance_percentage(bool &updated)
     if (duration == 0)
     {
         updated = false;
-        return seppl::last_distance;
+        return last_distance;
     }
 
-    seppl::last_distance = duration * 0.0344 / 2;
-    seppl::last_distance = (seppl::last_distance / max_distance) * 100;
-    return seppl::last_distance;
+    last_distance = duration * 0.0344 / 2;
+    last_distance = (last_distance / max_distance) * 100;
+
+    return last_distance;
 }
