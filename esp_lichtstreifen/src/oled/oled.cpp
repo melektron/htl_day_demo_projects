@@ -33,7 +33,10 @@ void oled::idle_display()
     u8g2.firstPage();
 
     u8g2.setFont(u8g2_font_ncenB24_tr);
-    u8g2.drawStr(40, 30, "ICA");
+    u8g2.drawStr(35, 30, "ICA");
+
+    u8g2.setFont(u8g2_font_ncenB08_tr);
+    u8g2.drawStr(35, 40, "Incompetence Center Anichstrasse");
 
     u8g2.nextPage();
 }

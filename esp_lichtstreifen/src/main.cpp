@@ -17,7 +17,8 @@
 // constants
 #define IDLE_TIME 5  // when idling starts (in sec)
 #define ANIM_TOGGLE_BUTTON 0
-#define DEFAULT_BRIGHTNESS 100
+#define DEFAULT_BRIGHTNESS 255
+#define IDLE_BRIGHTNESS 100
 
 // global variables
 int last_updated_time = 0;
@@ -75,6 +76,7 @@ void loop()
             if (anim_on)
             {
                 oled::idle_display();
+                FastLED.setBrightness(IDLE_BRIGHTNESS);
                 anim.renderToStrip(led_bar::leds);
             }
 
