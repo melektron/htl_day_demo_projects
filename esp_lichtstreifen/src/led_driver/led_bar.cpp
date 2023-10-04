@@ -74,7 +74,7 @@ void led_bar::Animation::renderToStrip(
     int end_index
 )
 {
-    if (end_index < 0)
+    if (end_index < 0 || end_index > strip.size())
         end_index = strip.size();
 
     for (int i = start_index; i < end_index; i++)
@@ -110,7 +110,7 @@ void led_bar::ConstantAnimation::renderToStrip(
     int end_index
 )
 {
-    if (end_index < 0)
+    if (end_index < 0 || end_index > strip.size())
         end_index = strip.size();
 
     for (int i = start_index; i < end_index; i++)

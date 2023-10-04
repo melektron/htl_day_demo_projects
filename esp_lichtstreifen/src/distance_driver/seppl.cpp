@@ -13,15 +13,20 @@ void seppl::setup(double dist)
     max_distance = dist;
 }
 
-double seppl::distance_percentage()
+double seppl::distance_percentage(bool &updated)
 {
+    updated = true;
+
     digitalWrite(TRIGGER, HIGH); 
     delayMicroseconds(3); 
     digitalWrite(TRIGGER, LOW); 
     int duration = pulseIn(ECHO, HIGH, 8000);
 
     if (duration == 0)
+    {
+        updated = false;
         return seppl::last_distance;
+    }
 
     seppl::last_distance = duration * 0.0344 / 2;
     seppl::last_distance = (seppl::last_distance / max_distance) * 100;
