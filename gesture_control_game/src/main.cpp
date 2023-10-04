@@ -4,11 +4,15 @@
 #define STEPPER_PIN_2 25
 #define STEPPER_PIN_3 33
 #define STEPPER_PIN_4 32
-#define TRIGGER 23
-#define ECHO 22
+#define T1 23
+#define T2 22
 
+#define X_MAX 1000
+#define Y_MAX 1000
 #define FULL_TURN 100
 int step_number = 0;
+int current_x_position = 0; 
+int current_y_position = 0; 
 
 void setup()
 {
@@ -16,8 +20,8 @@ void setup()
     pinMode(STEPPER_PIN_2, OUTPUT);
     pinMode(STEPPER_PIN_3, OUTPUT);
     pinMode(STEPPER_PIN_4, OUTPUT);
-    pinMode(TRIGGER, OUTPUT);
-    pinMode(ECHO, INPUT);
+    pinMode(T1, INPUT_PULLUP);
+    pinMode(T2, INPUT_PULLUP);
 }
 
 void OneStep(bool dir)
@@ -88,28 +92,55 @@ void OneStep(bool dir)
     }
 }
 
-double distance()
-{
-    digitalWrite(TRIGGER, HIGH);
-    delayMicroseconds(3);
-    digitalWrite(TRIGGER, LOW);
-    int duration = pulseIn(ECHO, HIGH);
-    double distance = duration * 0.0344 / 2;
-    return distance;
-}
 
-void loop()
+void x_axis()
 {
-
-    double turn = distance();
-    printf("%f\n",turn);
-    if (turn >= 30)
+    if (digitalRead(T1) && current_x_position <= X_MAX)
     {
         for (int a = 0; a <= FULL_TURN; a++)
         {
             OneStep(true);
             delay(2);
         }
+        current_x_position+=100; 
     }
-    delay(1000);
+    else if (!digitalRead(T1) && current_x_position >= X_MAX * (-1))
+    {
+        for (int a = 0; a <= FULL_TURN; a++)
+        {
+            OneStep(false);
+            delay(2);
+        }
+        current_x_position-=100; 
+    }
+}
+
+void y_axis()
+{
+    if (digitalRead(T1) && current_y_position <= Y_MAX)
+    {
+        for (int a = 0; a <= FULL_TURN; a++)
+        {
+            OneStep(true);
+            delay(2);
+        }
+        current_x_position+=100; 
+    }
+    else if (!digitalRead(T1) && current_y_position >= Y_MAX * (-1))
+    {
+        for (int a = 0; a <= FULL_TURN; a++)
+        {
+            OneStep(false);
+            delay(2);
+        }
+        current_y_position-=100; 
+    }
+}
+
+
+
+void loop()
+{
+    x_axis(); 
+    y_axis(); 
 }
