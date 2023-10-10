@@ -207,7 +207,7 @@ void y_axis()
             OneStep_Y(true);
             delay(2);
         }
-        current_x_position+=100; 
+        current_y_position+=100; 
     }
     else if (!digitalRead(T2) && current_y_position >= Y_MAX * (-1))
     {
@@ -226,6 +226,4 @@ void loop()
 {
     x_axis(); 
     y_axis();
-
-    printf("%d, %d \n",digitalRead(T1), digitalRead(T2)); 
 }
