@@ -10,7 +10,8 @@ Arduino entry point for led display
 #include <Arduino.h>
 #include "matrixdriver.hpp"
 
-matrixdriver<32, 8, 5> matrix;
+// x y pin
+matrixdriver<32, 8, 19> matrix;
 
 //              0brrrrrggggggbbbbb
 #define RED     0b1111100000000000
