@@ -25,4 +25,6 @@ namespace oled
     void setup();
 
     void update_display(double dist_perc, double max_distance);
+    void idle_display();
+    void off();
 };
